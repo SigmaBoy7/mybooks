@@ -12,7 +12,7 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        lazy: () => import("@/features/IntroducingPage/Intro.page"),
+        lazy: () => import("@/features/GuestUserPage/GuestUserPage.page"),
       },
     ],
   },
