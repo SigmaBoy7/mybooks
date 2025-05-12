@@ -1,10 +1,14 @@
 import { Outlet } from "react-router";
 import Provider from "./Provider";
+import Header from "@/shared/components";
 
 function App() {
   return (
     <Provider>
-      <Outlet />
+      <div className=" font-bold">
+        <Header />
+        <Outlet />
+      </div>
     </Provider>
   );
 }

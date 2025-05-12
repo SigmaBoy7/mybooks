@@ -1,18 +1,17 @@
-import { rqClient } from "@/shared/api/instance";
+import { store, type AppState } from "@/shared/store";
+import type { IBook } from "@/shared/types";
 import { Link } from "react-router";
 
 export default function IntroPage() {
-  const { data, isSuccess } = rqClient.useQuery("get", "/search.json", {
-    params: { query: { q: "lord" } },
-  });
-
-  if (isSuccess) {
-    console.log(data);
-  }
+  const selectUserBooks = (state: AppState) => state.userBooks;
+  const userBooks = selectUserBooks(store.getState());
 
   return (
     <>
       Hello <Link to={"/"}>Hellos</Link>
+      {userBooks.map((item: IBook) => {
+        return <div>{item.title}</div>;
+      })}
     </>
   );
 }
