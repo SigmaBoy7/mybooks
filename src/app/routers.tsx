@@ -1,5 +1,5 @@
-import "./index.css";
 import App from "@/app/App";
+import "./index.css";
 
 import { createBrowserRouter } from "react-router";
 
@@ -12,7 +12,8 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        lazy: () => import("@/features/GuestUserPage/GuestUserPage.page"),
+        lazy: () =>
+          import("@/features/GuestUserPage/components/GuestUserPage.page"),
       },
     ],
   },

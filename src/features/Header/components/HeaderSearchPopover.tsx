@@ -1,7 +1,8 @@
+import { Skeleton } from "@/shared/components";
+import { useAppDispatch } from "@/shared/store/storeHooks";
+import type { IBook, ISearchResultResponse } from "@/shared/types";
 import { AlertTriangle } from "lucide-react";
-import type { ISearchResultResponse } from "@/shared/types";
-import { Skeleton } from "../kit/skeleton";
-import { store, type AddToUserBooksAction } from "@/shared/store";
+import { Link } from "react-router";
 
 export default function HeaderSearchPopover({
   searchResult,
@@ -9,16 +10,21 @@ export default function HeaderSearchPopover({
   isError,
   isSuccess,
 }: {
-  searchResult?: ISearchResultResponse; // Добавляем optional модификатор
+  searchResult?: ISearchResultResponse;
   isFetching: boolean;
   isError: boolean;
   isSuccess: boolean;
 }) {
+  const dispatch = useAppDispatch();
+  const addToUserBooks = (book: IBook): void => {
+    dispatch({ type: "user/addBook", payload: book });
+  };
+
   const getPopoverContent = () => {
     if (isFetching) {
       return (
         <div className="space-y-2">
-          {[...Array(5)].map((_, i) => (
+          {[...Array(2)].map((_, i) => (
             <Skeleton key={i} className="h-4 w-full rounded-lg bg-gray-800" />
           ))}
         </div>
@@ -35,7 +41,6 @@ export default function HeaderSearchPopover({
     }
 
     if (isSuccess) {
-      // Добавляем проверку на существование searchResult
       if (!searchResult?.docs) return null;
 
       if (searchResult.docs?.length > 0) {
@@ -54,18 +59,17 @@ export default function HeaderSearchPopover({
                     {item.author_name.join(", ")}
                   </p>
                 )}
-                <button
-                  onClick={() =>
-                    store.dispatch({
-                      type: "usersBooks/addBook",
-                      payload: item,
-                    } satisfies AddToUserBooksAction)
-                  }
-                >
+                <button onClick={() => addToUserBooks(item)}>
                   Add to list
                 </button>
               </div>
             ))}
+            <Link
+              to={"/search"}
+              className="text-right text-blue-400 hover:text-blue-600"
+            >
+              Show all results
+            </Link>
           </div>
         );
       }

@@ -1,14 +1,14 @@
-// Модель ошибки валидации
-interface ValidationError {
-  loc: string[];
-  msg: string;
-  type: string;
-}
+// // Модель ошибки валидации
+// interface ValidationError {
+//   loc: string[];
+//   msg: string;
+//   type: string;
+// }
 
-// Обертка для ошибок валидации
-interface HTTPValidationError {
-  detail: ValidationError[];
-}
+// // Обертка для ошибок валидации
+// interface HTTPValidationError {
+//   detail: ValidationError[];
+// }
 
 // Основная модель данных результата поиска
 export interface IBook {

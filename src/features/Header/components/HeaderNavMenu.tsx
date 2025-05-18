@@ -4,9 +4,13 @@ import {
   NavigationMenuList,
   navigationMenuTriggerStyle,
 } from "@/shared/components/ui/kit/navigation-menu";
-import { Avatar, AvatarFallback, AvatarImage } from "../kit/avatar";
 import { NavLink } from "react-router";
-import { Switch } from "../kit/switch";
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "../../../shared/components/ui/kit/avatar";
+import { Switch } from "../../../shared/components/ui/kit/switch";
 
 export default function HeaderNavMenu() {
   return (
